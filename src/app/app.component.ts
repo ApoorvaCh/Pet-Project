@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { SohoApplicationMenuComponent } from 'ids-enterprise-ng';
 
 @Component({
   selector: 'app-root',
@@ -6,14 +7,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ids-enterprise-ng-quickstart';
+  @ViewChild(SohoApplicationMenuComponent, { static: true })
+  public applicationMenu: SohoApplicationMenuComponent;
+  title = 'Pet-Project';
+  isApplicationMenuOpen: boolean;
 
   constructor() {
-    // Set the Locale for the app
     Soho.Locale.set('en-US');
   }
 
-  public clicked() {
-    alert('Clicked me!');
-  }
+  public onMenuVisibility(visible: boolean): void {
+    if (this.isApplicationMenuOpen !== visible) {
+      this.isApplicationMenuOpen = visible;
+    }
+  } 
 }
