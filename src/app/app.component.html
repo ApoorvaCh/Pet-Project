@@ -3,12 +3,9 @@
 <soho-icons></soho-icons>
 <soho-icons-uplift></soho-icons-uplift>
 
-<nav soho-application-menu class="is-personalizable" [filterable]="true" [openOnLarge]="false"
+<nav soho-application-menu class="is-personalizable"  [openOnLarge]="false"
   [dismissOnClickMobile]="true" (menuVisibility)="onMenuVisibility($event)">
-  <div soho-searchfield-wrapper>
-    <label class="audible" for="application-menu-searchfield">Search</label>
-    <input soho-searchfield id="application-menu-searchfield" [clearable]="true" />
-  </div>
+  
   <app-side-nav></app-side-nav>
 </nav>
 <div class="page-container no-scroll">
