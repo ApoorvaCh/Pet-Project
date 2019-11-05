@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { FavouritesComponent } from './favourites/favourites.component';
+
+import { HomeComponent } from './home/home.component';
+
 
 
 const routes: Routes = [
   {
-    path:'', component:DashboardComponent
+    path:'', component:HomeComponent
   },
   {
-    path:'favourites', component : FavouritesComponent
+    path:'home',loadChildren:'./home/home.module#HomeModule'
   }
 ];
 

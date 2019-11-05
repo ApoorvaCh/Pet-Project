@@ -7,23 +7,21 @@ import { AppComponent } from './app.component';
 import { SohoLocaleInitializerModule } from './locale/soho-locale-initializer.module';
 import { HeaderComponent } from './header/header.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { FavouritesComponent } from './favourites/favourites.component';
 import { AppRoutingModule } from './app-routing.module';
+import { HomeModule } from './home/home.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    SideNavComponent,
-    DashboardComponent,
-    FavouritesComponent
+    SideNavComponent
   ],
   imports: [
     BrowserModule,
     SohoComponentsModule,
     SohoLocaleInitializerModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
