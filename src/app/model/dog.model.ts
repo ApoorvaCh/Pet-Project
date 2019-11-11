@@ -1,6 +1,6 @@
 export interface Dog{
     url : string;
-    
+    like:boolean;
 }
 
 export const enum dogStatus{

@@ -1,3 +1,78 @@
+<!-- <div  *ngFor="let dog of dogs$ | async; let i=index">
+<div soho-homepage>
+
+  
+  <div soho-widget>
+    <div soho-widget-header>
+      <div soho-widget-title tabIndex="{{i}}"><h2>Name</h2></div>
+    </div>
+    <div soho-widget-content>
+        <img src="{{dog.url}}"/>
+    </div>
+  </div>
+</div>  -->
+    <!-- <div soho-widget>
+      <div soho-widget-header>
+        <div soho-widget-title tabIndex="0"><h4>Name</h4> </div>
+        
+        </div>
+      <div soho-widget-content>
+        
+      </div>
+    </div>
+
+    <div soho-widget>
+      <div soho-widget-header>
+        <div soho-widget-title tabIndex="1">
+            <h2>Name</h2>
+        </div>
+        </div>
+      <div soho-widget-content>
+        
+      </div>
+    </div>
+
+    <div soho-widget>
+      <div soho-widget-header>
+        <div soho-widget-title tabIndex="2"><h2>Name</h2></div>
+        
+        </div>
+      <div soho-widget-content>
+       
+      </div>
+    </div>
+
+    <div soho-widget>
+        <div soho-widget-header>
+          <div soho-widget-title tabIndex="3"><h2>Name</h2></div>
+          </div>
+        <div soho-widget-content>
+         
+        </div>
+      </div> -->
+<!-- </div> -->
+
+        
+
+<!-- <div class="cards" *ngFor="let dog of dogs$ | async">
+
+  <img src="{{dog.url}}" width="200px" height="200px"/>
+<br/>
+  <button (click)="liked(dog)">Like</button>
+
+</div> -->
+
+
+<!-- <div class="row demo-grid" >
+    <div class="three columns" *ngFor="let dog of dogs$ | async">
+      <div class="content-area">
+        <h2>Name</h2>
+        <img src="{{dog.url}}" width="100%" height="300px" />
+        <button (click)="liked(dog)">Like</button>
+     </div>
+    </div>  
+  </div> -->
+
 <div class="row">
   <div class="one-fourth column"  *ngFor="let dog of dogs$|async">
   <div class="card">
@@ -5,8 +80,14 @@
       <h2 class="card-title" >Tasks - Simple</h2>
     </div>
     <div class="card-content">
+      <!-- <soho-listview #simpleSelectListView>
+        <li soho-listview-item  [disabled]="dog.disabled" [selected]="dog.selected">
+          {{dog.url}}
+        </li>
+      </soho-listview> -->
       <img src="{{dog.url}}" width="100%" height="100%"/>
-     </div>
+      <button (click)="liked(dog)">Like</button> 
+    </div>
   </div>
 </div>
 </div>

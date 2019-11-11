@@ -1,36 +1,12 @@
-<div soho-homepage
-  (resize)="onResize($event, $args)"
->
-
-    <div soho-widget>
-      <div soho-widget-header>
-        <div soho-widget-title tabIndex="0"><h4>Name</h4> </div>
-        
-        </div>
-      <div soho-widget-content>
-        
-      </div>
+<div class="row">
+  <div class="one-fourth column"  *ngFor="let dog of dogs$|async">
+  <div class="card">
+    <div class="card-header">
+      <h2 class="card-title" >Tasks - Simple</h2>
     </div>
-
-    <div soho-widget>
-      <div soho-widget-header>
-        <div soho-widget-title tabIndex="1">
-            <h2>Name</h2>
-        </div>
-        </div>
-      <div soho-widget-content>
-        
-      </div>
+    <div class="card-content">
+      <img src="{{dog.url}}" width="100%" height="100%"/>
     </div>
-
-    <div soho-widget>
-      <div soho-widget-header>
-        <div soho-widget-title tabIndex="2"><h2>Name</h2></div>
-        </div>
-      <div soho-widget-content>
-       
-      </div>
-    </div>
-
-  
+  </div>
+</div>
 </div>
