@@ -30,22 +30,17 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-
   favdogs:Dog[]=[];
   myDog:Dog;
   liked(likeddog:Dog){
     this.myDog={...likeddog};
-    if(this.myDog.like===true){
-      this.myDog.like=false;
-    }
-    else{
-      this.myDog.like=true;
-    }
+    this.myDog.likeStatus="UNLIKE";
     this.favdogs.push(this.myDog);
     localStorage.setItem('favDogs',JSON.stringify(this.favdogs));
     this.favdogs.forEach(val=>this.store.dispatch(new Dogs.addToFav(val)));
+    
   }
-
+  
 }
 
 

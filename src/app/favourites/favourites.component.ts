@@ -27,8 +27,20 @@ export class FavouritesComponent implements OnInit {
     else{
       this.favDogs=JSON.parse(localStorage.getItem('favDogs'));
     }
-    this.favDogs.forEach(val=>this.store.dispatch(new Dogs.loadFav(val)));
-   
+    this.favDogs.forEach(val=>this.store.dispatch(new Dogs.addToFav(val)));  
+  }
+
+  selectedDog:Dog;
+  unlike(dog:Dog){
+    this.selectedDog={...dog};
+    this.selectedDog.likeStatus="LIKE";
+    for(let i=0;i<this.favDogs.length;i++){
+      if(this.favDogs[i].url===dog.url){
+        this.favDogs.splice(i,1);
+      }
+    }
+    localStorage.setItem('favDogs',JSON.stringify(this.favDogs));
+    this.store.dispatch(new Dogs.deletefromFav(dog));
   }
 
 }

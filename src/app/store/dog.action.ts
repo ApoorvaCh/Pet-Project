@@ -23,13 +23,15 @@ export class addToFav{
     constructor(public favDog:Dog){}
 }
 
-export class loadFav{
-    static readonly type='[Dog] loadfavDog';
-    
-    constructor(public favDogs:Dog){}
-}
-
 export class clearFav{
     static readonly type='[Dog] clearFavDog';
 }
+
+export class deletefromFav{
+    static readonly type='[Dog] deleteFavDog';
+
+    constructor(public favDog:Dog){}
+}
+
+
 }

@@ -1,7 +1,10 @@
 export interface Dog{
-    url : string;
-    like:boolean;
+    readonly url : string;
+    name?:string;
+    breed?:string;
+    likeStatus?:string;    
 }
+   
 
 export const enum dogStatus{
     status = 'success',
