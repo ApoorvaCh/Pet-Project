@@ -13,13 +13,15 @@ import { NgxsModule } from '@ngxs/store'
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin'
 import { environment } from 'src/environments/environment';
 import { DogState } from './store/dog.state';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    SideNavComponent
+    SideNavComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -29,7 +31,8 @@ import { HttpClientModule } from '@angular/common/http'
     SohoComponentsModule,
     SohoLocaleInitializerModule,
     AppRoutingModule,
-    HomeModule
+    HomeModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

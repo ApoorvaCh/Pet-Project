@@ -1,6 +1,6 @@
 <div class="row">
   <div class="one-fourth column"  *ngFor="let dog of dogs$|async">
-  <div class="card">
+  <div class="card" id="editDog" (click)="edit(dog)">
     <div class="card-header">
       <h2 class="card-title" >{{dog.name}}</h2>
     </div>
@@ -11,3 +11,5 @@
   </div>
 </div>
 </div>
+
+<div #dialogPlaceholder></div>

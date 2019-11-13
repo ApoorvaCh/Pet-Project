@@ -1,7 +1,7 @@
 
 <div class="row">
   <div class="one-fourth column"  *ngFor="let dog of dogs$|async">
-  <div class="card" id="add-context" (click)="edit(dog)">
+  <div class="card" id="editDog" (click)="edit(dog)">
     <div class="card-header">
       <h2 class="widget-title" >{{dog.name}}<br/></h2>
       <h2 class="widget-title" >{{dog.breed}}</h2>
@@ -13,25 +13,8 @@
     </div>
   </div>
 
-  <!-- Modal Example -->
-  <div id="modal-add-context" class="hidden">
-			<div class="field">
-				<label for="subject">Name</label>
-				<input type="text" id="name" name="name" />
-      </div>
-      
-      <div class="field">
-          <label for="subject">Breed</label>
-          <input type="text" id="breed" name="breed" />
-        </div>
-
-			<div class="field">
-				<label for="notes-max">Description</label>
-				<input type="text" id="description" name="description" />
-			</div>
-		</div>
-
 </div>
 </div>
 
 
+  <div #dialogPlaceholder></div>

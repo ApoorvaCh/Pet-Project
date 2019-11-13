@@ -1,11 +1,19 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { SohoHomePageComponent } from 'ids-enterprise-ng';
 import { DashboardService } from '../services/dashboard.service';
 import { Select, Store } from '@ngxs/store';
 import { DogState } from '../store/dog.state';
 import { Observable } from 'rxjs';
-import { Dog } from '../model/dog.model';
+import { Dog, dogStatus } from '../model/dog.model';
 import { Dogs } from '../store/dog.action';
+
+import { SohoModalDialogService } from 'ids-enterprise-ng';
+import { EditModalDialogComponent } from '../edit-modal-dialog/edit-modal-dialog.component';
+
+//import { ExampleModalDialogComponent} from './edit-modal-dialog.component';
+
+
+
 
 @Component({
   selector: 'app-dashboard',
@@ -16,8 +24,20 @@ export class DashboardComponent implements OnInit {
 
   @Select(DogState.getAllDogs) dogs$: Observable<Dog[]>;
   @ViewChild(SohoHomePageComponent, { static: true }) homepage: SohoHomePageComponent;
-  
-  constructor(private myDashboardService:DashboardService, private store:Store) {
+  @ViewChild('dialogPlaceholder', { read: ViewContainerRef, static: true })
+placeholder: ViewContainerRef;
+
+public closeResult: string;
+
+public title = 'Edit';
+public isAlert = false;
+
+/**
+ * Constructor.
+ *
+ * @param dialogService - the modal dialog service.
+ */
+  constructor(private myDashboardService:DashboardService, private store:Store, private modalService: SohoModalDialogService) {
     
   }
   ngOnInit() {  
@@ -41,41 +61,38 @@ export class DashboardComponent implements OnInit {
     
   }
   
-  name:string;
-  breed:string;
-  description:string;
-  edit(){
-    var modals = {
-      'add-context': {
-        'title': 'Add Context',
-        'id': 'my-id',
-        'content': $('#modal-add-context')
-      }
-    },
-    setModal = function (opt) {
-      opt = $.extend({
-        buttons: [{
-          text: 'Cancel',
-          click: function(e, modal) {
-            modal.close();
-          }
-        }, {
-        text: 'Save',
-        click: function(e, modal) {
-          
-          modal.close();
+
+  
+  edit(dog:Dog){
+    const dialogRef = this.modalService
+      .modal<EditModalDialogComponent>(EditModalDialogComponent, this.placeholder)
+      .buttons([
+        {
+          id: 'cancel-button',
+          text: Soho.Locale.translate('Cancel'),
+          click: (e, modal) => { modal.isCancelled = true; dialogRef.close('CANCEL'); }
         },
-        validate: false,
-        isDefault: true
-       }]
-      }, opt);
-      $('body').modal(opt);
-   };
-    $('#add-context').on('click', function () {
-      setModal(modals[this.id]);
+        {
+          text: 'Submit', click: (e, modal) => {
+            
+            dialogRef.close('SUBMIT');
+          }, isDefault: true
+        }])
+      .title(this.title)
+      .isAlert(this.isAlert)
+      .apply((dialogComponent) => { dialogComponent.model.name = dog.name; dialogComponent.model.breed=dog.breed;
+      dialogComponent.model.description=dog.description; dialogComponent.model.likeStatus=dog.likeStatus })
+      .open();
+
+    // Attach a listener to the afterClose event, which also gives you the result - if available.
+     dialogRef.afterClose((result, ref, dialogComponent) => {
+      console.log(dialogComponent.model);
+      this.closeResult = result;
     });
 
   } 
+
+
 
 }
 

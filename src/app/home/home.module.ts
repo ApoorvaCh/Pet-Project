@@ -6,18 +6,27 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
 import { FavouritesComponent } from '../favourites/favourites.component';
 import { HomeComponent } from './home.component';
 import { SohoComponentsModule } from 'ids-enterprise-ng';
+import{ FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { EditModalDialogComponent } from '../edit-modal-dialog/edit-modal-dialog.component';
 
 
 @NgModule({
   declarations: [
     DashboardComponent,
     FavouritesComponent,
-    HomeComponent
+    HomeComponent,
+    EditModalDialogComponent
   ],
   imports: [
     CommonModule,
     HomeRoutingModule,
-    SohoComponentsModule
-  ]
+    SohoComponentsModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],
+  entryComponents: [
+    // You need to add any 'dynamic' components to the entry components otherwise the factory can't find them.
+    EditModalDialogComponent
+  ],
 })
 export class HomeModule { }
