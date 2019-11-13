@@ -41,6 +41,42 @@ export class DashboardComponent implements OnInit {
     
   }
   
+  name:string;
+  breed:string;
+  description:string;
+  edit(){
+    var modals = {
+      'add-context': {
+        'title': 'Add Context',
+        'id': 'my-id',
+        'content': $('#modal-add-context')
+      }
+    },
+    setModal = function (opt) {
+      opt = $.extend({
+        buttons: [{
+          text: 'Cancel',
+          click: function(e, modal) {
+            modal.close();
+          }
+        }, {
+        text: 'Save',
+        click: function(e, modal) {
+          
+          modal.close();
+        },
+        validate: false,
+        isDefault: true
+       }]
+      }, opt);
+      $('body').modal(opt);
+   };
+    $('#add-context').on('click', function () {
+      setModal(modals[this.id]);
+    });
+
+  } 
+
 }
 
 

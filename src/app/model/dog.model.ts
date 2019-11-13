@@ -2,7 +2,8 @@ export interface Dog{
     readonly url : string;
     name?:string;
     breed?:string;
-    likeStatus?:string;    
+    likeStatus?:string;   
+    description?:string; 
 }
    
 

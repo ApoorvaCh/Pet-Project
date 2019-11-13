@@ -2,7 +2,7 @@
   <div class="one-fourth column"  *ngFor="let dog of dogs$|async">
   <div class="card">
     <div class="card-header">
-      <h2 class="card-title" >Name</h2>
+      <h2 class="card-title" >{{dog.name}}</h2>
     </div>
     <div class="card-content">
       <img src="{{dog.url}}" width="100%" height="250px"/>

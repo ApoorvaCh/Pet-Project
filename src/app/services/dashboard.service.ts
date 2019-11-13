@@ -19,7 +19,7 @@ export class DashboardService{
     loadDog(){
         this.http.get(this.url).pipe(
             filter((apiStatus:DogApiResponse)=> (apiStatus.status===dogStatus.status )),
-            map((imgResponse:DogApiResponse)=>{ return {url : imgResponse.message, likeStatus:"LIKE"}; }),
+            map((imgResponse:DogApiResponse)=>{ return {url : imgResponse.message, likeStatus:"LIKE", name:"Name", breed:"Breed",description:"description"}; }),
         ). subscribe(dog => this.store.dispatch(new Dogs.Retrieve(dog)));
         
     }
