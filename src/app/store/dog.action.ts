@@ -17,6 +17,12 @@ export class liked{
     constructor(public likedDog:Dog){}
 }
 
+export class edit{
+    static readonly type='[Dog] editDog';
+
+    constructor(public editDog:Dog){}
+}
+
 export class addToFav{
     static readonly type='[Dog] favDog';
 
@@ -32,6 +38,13 @@ export class deletefromFav{
 
     constructor(public favDog:Dog){}
 }
+
+export class editFav{
+    static readonly type='[Dog] editDog';
+
+    constructor(public editDog:Dog){}
+}
+
 
 
 }

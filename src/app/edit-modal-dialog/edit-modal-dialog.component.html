@@ -1,17 +1,17 @@
 <div>
     <div class="field">
 		<label for="subject">Name</label>
-		<input type="text" id="name" name="name" placeholder="{{model.name}}"/>
+		<input type="text" id="name" name="name" placeholder="{{model.name}}" [(ngModel)]="name"/>
     </div>
     <div class="field">
         <label for="subject">Breed</label>
-        <input type="text" id="breed" name="breed" placeholder="{{model.breed}}"/>
+        <input type="text" id="breed" name="breed" placeholder="{{model.breed}}" [(ngModel)]="breed"/>
     </div>
     <div class="field">
         <label for="subject">Description</label>
-        <input type="text" id="description" name="description" placeholder="{{model.description}}"/>
+        <input type="text" id="description" name="description" placeholder="{{model.description}}" [(ngModel)]="description"/>
     </div>
     <div class="field">
-            <button soho-button="primary" id="LikeStatus" soho-button >{{model.likeStatus}}</button>
+            <button soho-button="primary" id="LikeStatus" soho-button (click)="like()">{{model.likeStatus}}</button>
     </div>
 </div>

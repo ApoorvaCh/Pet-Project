@@ -81,4 +81,24 @@ export class DogState{
         })
     }
 
+    @Action(Dogs.editFav)
+    editFavDog(ctx:StateContext<DogStateModel>,{ editDog }: Dogs.editFav){
+        const state=ctx.getState();
+        ctx.patchState({
+            favdogs:{...state.favdogs,
+            [editDog.url]:editDog
+        }});
+    }
+
+    @Action(Dogs.edit)
+    editDog(ctx:StateContext<DogStateModel>,{ editDog }:Dogs.edit){
+        const state=ctx.getState();
+        ctx.patchState({
+            dogs:{
+                ...state.dogs,
+                [editDog.url]:editDog
+            }
+        });
+    }
+
 }

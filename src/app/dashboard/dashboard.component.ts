@@ -58,11 +58,10 @@ public isAlert = false;
     this.favdogs.push(this.myDog);
     localStorage.setItem('favDogs',JSON.stringify(this.favdogs));
     this.favdogs.forEach(val=>this.store.dispatch(new Dogs.addToFav(val)));
-    
   }
   
 
-  
+  editDog:Dog;
   edit(dog:Dog){
     const dialogRef = this.modalService
       .modal<EditModalDialogComponent>(EditModalDialogComponent, this.placeholder)
@@ -74,7 +73,6 @@ public isAlert = false;
         },
         {
           text: 'Submit', click: (e, modal) => {
-            
             dialogRef.close('SUBMIT');
           }, isDefault: true
         }])
@@ -84,9 +82,18 @@ public isAlert = false;
       dialogComponent.model.description=dog.description; dialogComponent.model.likeStatus=dog.likeStatus })
       .open();
 
-    // Attach a listener to the afterClose event, which also gives you the result - if available.
      dialogRef.afterClose((result, ref, dialogComponent) => {
-      console.log(dialogComponent.model);
+      this.editDog={...dog};
+      this.editDog.name=dialogComponent.name;
+      this.editDog.breed=dialogComponent.breed;
+      this.editDog.description=dialogComponent.description;
+      this.editDog.likeStatus=dialogComponent.model.likeStatus;
+      if(this.editDog.likeStatus==="UNLIKE"){
+        this.liked(this.editDog);
+      }
+      else{
+        this.store.dispatch(new Dogs.edit(this.editDog));
+      }
       this.closeResult = result;
     });
 

@@ -36,7 +36,9 @@ public isAlert = false;
   
   constructor( private store:Store, private modalService: SohoModalDialogService) {
    }
+
   @Select(DogState.getAllFavDogs)dogs$ : Observable<Dog[]>
+
   favDogs:Dog[]=[];
   ngOnInit() {
     this.store.dispatch(new Dogs.clearFav());
@@ -63,6 +65,8 @@ public isAlert = false;
     this.store.dispatch(new Dogs.deletefromFav(dog));
   }
 
+  editDog:Dog;
+  favDog: any;
   edit(dog:Dog){
     const dialogRef = this.modalService
       .modal<EditModalDialogComponent>(EditModalDialogComponent, this.placeholder)
@@ -83,13 +87,37 @@ public isAlert = false;
       dialogComponent.model.description=dog.description; dialogComponent.model.likeStatus=dog.likeStatus })
       .open();
 
-    // Attach a listener to the afterClose event, which also gives you the result - if available.
      dialogRef.afterClose((result, ref, dialogComponent) => {
-      console.log(dialogComponent.model);
+
+      this.editDog={...dog};
+      this.editDog.name=dialogComponent.name;
+      this.editDog.breed=dialogComponent.breed;
+      this.editDog.description=dialogComponent.description;
+      this.editDog.likeStatus=dialogComponent.model.likeStatus;
+      this.favDog=JSON.parse(localStorage.favDogs);
+      for(let i=0;i<this.favDog.length;i++){
+        if(this.favDog[i].url==this.editDog.url){
+          
+          this.favDog[i].name=this.editDog.name;
+          this.favDog[i].breed=this.editDog.breed;
+          this.favDog[i].description=this.editDog.description;
+          this.favDog[i].likeStatus=this.editDog.likeStatus;
+          localStorage.setItem("favDogs",JSON.stringify(this.favDog));
+
+          if(this.favDog[i].likeStatus=="LIKE"){
+            this.unlike(this.editDog);
+          }
+          else{
+            this.store.dispatch(new Dogs.editFav(this.editDog));
+          }
+          dog=this.favDog[i];
+        }
+      }
       this.closeResult = result;
     });
 
-  } 
 
+  } 
+  
 
 }
