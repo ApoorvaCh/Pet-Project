@@ -25,21 +25,21 @@ export class DashboardComponent implements OnInit {
   @Select(DogState.getAllDogs) dogs$: Observable<Dog[]>;
   @ViewChild(SohoHomePageComponent, { static: true }) homepage: SohoHomePageComponent;
   @ViewChild('dialogPlaceholder', { read: ViewContainerRef, static: true })
-placeholder: ViewContainerRef;
+  placeholder: ViewContainerRef;
 
-public closeResult: string;
+  public closeResult: string;
 
-public title = 'Edit';
-public isAlert = false;
+  public title = 'Edit';
+  public isAlert = false;
 
-/**
- * Constructor.
- *
- * @param dialogService - the modal dialog service.
- */
-  constructor(private myDashboardService:DashboardService, private store:Store, private modalService: SohoModalDialogService) {
+  /**
+  * Constructor.
+  *
+  * @param dialogService - the modal dialog service.
+  */
+    constructor(private myDashboardService:DashboardService, private store:Store, private modalService: SohoModalDialogService) {
     
-  }
+    }
   ngOnInit() {  
     this.myDashboardService.emptyDashboard();
     for(let i=0;i<20;i++){
